@@ -24,7 +24,9 @@ case 'demandeDeconnexion':
     include 'vues/v_deconnexion.php';
     break;
 case 'valideDeconnexion':
-    if (estConnecte()) {
+    if (estConnecteVisiteur()) {
+        include 'vues/v_deconnexion.php';
+    } elseif (estConnecteComptable()) {
         include 'vues/v_deconnexion.php';
     } else {
         ajouterErreur("Vous n'êtes pas connecté");
@@ -36,3 +38,4 @@ default:
     include 'vues/v_connexion.php';
     break;
 }
+
