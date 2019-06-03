@@ -15,13 +15,23 @@
  */
 
 /**
- * Teste si un quelconque visiteur est connecté
+ * Teste si un visiteur est connecté
  *
  * @return vrai ou faux
  */
-function estConnecte()
+function estConnecteVisiteur()
 {
     return isset($_SESSION['idVisiteur']);
+}
+
+/**
+ * Teste si un comptable est connecté
+ *
+ * @return vrai ou faux
+ */
+function estConnecteComptable()
+{
+    return isset($_SESSION['idComptable']);
 }
 
 /**
@@ -33,9 +43,25 @@ function estConnecte()
  *
  * @return null
  */
-function connecter($idVisiteur, $nom, $prenom)
+function connecterVisiteur($idVisiteur, $nom, $prenom)
 {
     $_SESSION['idVisiteur'] = $idVisiteur;
+    $_SESSION['nom'] = $nom;
+    $_SESSION['prenom'] = $prenom;
+}
+
+/**
+ * Enregistre dans une variable session les infos d'un comptable
+ *
+ * @param String $idComptable ID du comptable
+ * @param String $nom        Nom du comptable
+ * @param String $prenom     Prénom du comptable
+ *
+ * @return null
+ */
+function connecterComptable($idComptable, $nom, $prenom)
+{
+    $_SESSION['idComptable'] = $idComptable;
     $_SESSION['nom'] = $nom;
     $_SESSION['prenom'] = $prenom;
 }
@@ -246,4 +272,47 @@ function nbErreurs()
     } else {
         return count($_REQUEST['erreurs']);
     }
+}
+
+    /*
+     * Retourne la date du premier, pour le mois suivant
+     * 
+     * @param String $mois au format aaaamm
+     * 
+     * @return String $newDate au format jj/mm/aaaa
+     */
+    
+     function getNouveauMois($mois)
+    {
+        $numAnnee = substr($mois, 0, 4);
+        $numMois = substr($mois, 4, 2);
+        $numJour = "01";
+        
+        $nouvelleDate = $numJour . "/" . $numMois . "/" . $numAnnee;
+        
+        return $nouvelleDate;
+    }
+    
+    
+/**
+ * Fonction qui retourne le mois suivant un mois passé en paramètre
+ *
+ * @param String $mois Contient le mois à utiliser
+ *
+ * @return String le mois d'après
+ */
+function getMoisSuivant($mois)
+{
+    $numAnnee = substr($mois, 0, 4);
+    $numMois = substr($mois, 4, 2);
+    if ($numMois == '12') {
+        $numMois = '01';
+        $numAnnee++;
+    } else {
+        $numMois++;
+    }
+    if (strlen($numMois) == 1) {
+        $numMois = '0' . $numMois;
+    }
+    return $numAnnee . $numMois;
 }
