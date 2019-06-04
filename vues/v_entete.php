@@ -37,9 +37,9 @@
                 <div class="row vertical-align">
                     <div class="col-md-4">
                         <h1>
-                            <img src="./images/logo.jpg" class="img-responsive" 
+                            <a href="index.php?v_accueil.php"><img src="./images/logo.jpg" class="img-responsive" 
                                  alt="Laboratoire Galaxy-Swiss Bourdin" 
-                                 title="Laboratoire Galaxy-Swiss Bourdin">
+                                 title="Laboratoire Galaxy-Swiss Bourdin"></a>
                         </h1>
                     </div>
                     <div class="col-md-8">
